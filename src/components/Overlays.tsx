@@ -37,15 +37,30 @@ export const Overlays: React.FC = () => {
           transform: `translateY(${translateY}px) scale(${pulse})`,
           display: "flex",
           alignItems: "center",
-          gap: 12,
-          padding: isCta ? "20px 40px" : "16px 30px",
+          gap: 14,
+          padding: isCta ? "14px 40px 14px 14px" : "10px 30px 10px 10px",
           borderRadius: 999,
           backgroundColor: isCta ? ACCENT : "rgba(8,8,12,0.55)",
+          border: isCta ? "none" : `1px solid ${ACCENT}55`,
           backdropFilter: isCta ? undefined : "blur(6px)",
           boxShadow: isCta ? `0 12px 36px ${ACCENT}73` : "0 10px 28px rgba(0,0,0,0.3)",
         }}
       >
-        <span style={{ fontSize: isCta ? 40 : 34 }}>{active.icon}</span>
+        <span
+          style={{
+            width: isCta ? 56 : 48,
+            height: isCta ? 56 : 48,
+            borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: isCta ? 30 : 26,
+            backgroundColor: isCta ? "rgba(11,11,15,0.12)" : `${ACCENT}26`,
+            flexShrink: 0,
+          }}
+        >
+          {active.icon}
+        </span>
         <span
           style={{
             fontFamily: "'Helvetica Neue', Arial, sans-serif",
