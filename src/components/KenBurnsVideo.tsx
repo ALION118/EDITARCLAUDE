@@ -3,27 +3,26 @@ import { AbsoluteFill, OffthreadVideo, staticFile, useCurrentFrame, useVideoConf
 import { punchTimes } from "../data/overlays";
 import { captionLines } from "../data/captions";
 
-const PUNCH_WINDOW_SECONDS = 0.8;
-const PUNCH_STRENGTH = 0.045;
+const PUNCH_WINDOW_SECONDS = 0.9;
+const PUNCH_STRENGTH = 0.11;
 
 // Micro-punches en cada línea de subtítulo (cada ~2s), más sutiles que los
 // de cambio de tema, para que la cámara "respire" al ritmo del habla.
-const MINOR_PUNCH_WINDOW_SECONDS = 0.35;
-const MINOR_PUNCH_STRENGTH = 0.016;
+const MINOR_PUNCH_WINDOW_SECONDS = 0.45;
+const MINOR_PUNCH_STRENGTH = 0.035;
 const minorPunchTimes = captionLines.map((l) => l.start);
 
-// Movimiento de cámara sutil y continuo (zoom lento + deriva tipo
-// steadicam) más pequeños "punch-in" en los cambios de tema y en cada
-// línea de subtítulo, para dar dinamismo sin resultar brusco sobre un
-// único plano fijo.
+// Movimiento de cámara claramente perceptible (zoom + deriva tipo
+// steadicam) más "punch-in" marcados en los cambios de tema y en cada
+// línea de subtítulo, para dar dinamismo sobre un único plano fijo.
 const useCameraTransform = (durationInSeconds: number) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / fps;
 
-  const baseZoom = 1 + 0.12 * (t / durationInSeconds);
-  const panX = 12 * Math.sin((2 * Math.PI * t) / 13);
-  const panY = 9 * Math.sin((2 * Math.PI * t) / 19 + 1.3);
+  const baseZoom = 1.04 + 0.22 * (t / durationInSeconds);
+  const panX = 22 * Math.sin((2 * Math.PI * t) / 13);
+  const panY = 16 * Math.sin((2 * Math.PI * t) / 19 + 1.3);
 
   let punch = 0;
   for (const p of punchTimes) {
