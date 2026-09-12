@@ -13,11 +13,34 @@ Welcome to your Remotion project!
 
 ## Composición
 
-`Main` — 1920x1080, 30 fps, 150 frames (5 s). Definida en `src/Composition.tsx`.
+`InvitacionPresencial` — 1080x1920 (vertical), 30 fps, 2280 frames (76 s).
+Definida en `src/Composition.tsx`. Edición de `Invitacion.Presencial.mp4`
+(descargado del [Release V1.0.0](https://github.com/ALION118/EDITARCLAUDE/releases/tag/V1.0.0))
+con:
 
-El markup sigue las buenas prácticas de interactividad de Remotion (estilos y
-llamadas a `interpolate()` en línea), así que los elementos se pueden
-seleccionar y editar desde el Studio y los cambios se escriben en el código.
+- **Recorte de silencio final**: el habla original (según el SRT) termina a
+  los 75.56 s; el clip se corta a los 76.0 s, eliminando el silencio muerto
+  final del vídeo fuente (76.87 s).
+- **Cámara dinámica** (`src/components/KenBurnsVideo.tsx`): zoom lento y
+  continuo + deriva tipo steadicam (paneo sinusoidal) más pequeños
+  "punch-in" en cada cambio de tema.
+- **Subtítulos karaoke** (`src/components/Captions.tsx`): reconstruidos a
+  partir del SRT original (`src/data/captions.ts`), con la palabra activa
+  resaltada y entrada/salida animada por línea.
+- **Overlays contextuales** (`src/components/Overlays.tsx` +
+  `src/data/overlays.ts`): chips de texto/icono y CTAs sincronizados con lo
+  que se dice en cada momento.
+
+### Preparar el vídeo fuente
+
+El archivo `public/Invitacion.Presencial.mp4` (≈176 MB) no se versiona en
+git (ver `.gitignore`). Antes de abrir el Studio o renderizar, descárgalo
+del Release:
+
+```console
+curl -L -o public/Invitacion.Presencial.mp4 \
+  https://github.com/ALION118/EDITARCLAUDE/releases/download/V1.0.0/Invitacion.Presencial.mp4
+```
 
 ## Notas del entorno
 

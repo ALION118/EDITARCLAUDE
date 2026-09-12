@@ -5,3 +5,7 @@ dist
 
 # Ignore the output video from Git but not videos you import into src/.
 out
+
+# Fuente de vídeo descargada del Release (ver README) — demasiado pesada
+# para versionarla en el repo.
+public/Invitacion.Presencial.mp4
